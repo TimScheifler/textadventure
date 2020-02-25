@@ -1,0 +1,6 @@
+- A description of the game (background context, draft of story or storyline)
+- Summary of Background research with a description of how this has contributed to my project. (Potential Solutions, libraries, or APIs).
+- A list of features + why they are included.
+- A navigation tree + some discussion why and how I'm organizing my side.
+- Sketch of an initial user interface + some commentary of the motivation of the design.
+- Angemessen: alle zusätzlichen Sektionen die mein Projekt beschreiben. (Speichert der Browser Daten, was für features gibt es?).
