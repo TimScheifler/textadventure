@@ -40,7 +40,7 @@ li a:hover {
 /***************/
 body{
     background-color: grey;
-    background-image: url("images/planet-1702788_1280_2.png");
+    background-image: url("../images/planet-1702788_1280_2.png");
 }
 
 footer{
@@ -67,7 +67,7 @@ js-container
     box-sizing: border-box;
 }
 
-.game-container{
+.page-content-container{
     width: 400px;
     max-width: 75%;
     background-color: #000137;

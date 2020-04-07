@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Page</title>
+    <link rel ="stylesheet" href ="flex2.css">
+</head>
+<body>
+    <div class ="wrapper">
+        <header class ="header">
+            <div class="card">
+                <nav>
+                    <ul class="menu_ul">
+                        <li class="menu_li"><a href="index.html" target =" _blank " class="active">About the Game</a></li>
+                        <li class="menu_li"><a href="game.html" target =" _blank ">Play</a></li>
+                        <li class="menu_li"><a href="contact.html" target =" _blank ">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="contact">
+            <div class="contact-title">
+                <h1>Submit any ideas!</h1>
+                <p>You've got a new idea for a daily adventure or you've found a bug?<br>Please report it here by sending me an E-Mail.</p>
+            </div>
+            <div class="contact-form">
+                <form id="contact-form" method="post" action="contact-form-handler.php">
+                    <input name="name" type="text" class="form-control" placeholder="Your Name" required>
+                    <br>
+                    <input name="email" type="email" class="form-control" placeholder="Your Email" required>
+                    <br>
+                    <textarea name="message" class="form-control" placeholder="Your Message" row="4" required></textarea>
+                    <br>
+                    <input type="submit" class="form-control submit" value="SEND MESSAGE">
+                </form>
+            </div>
+        </div>
+        <footer class ="footer"> &copy ; 2020 - Tim Scheifler is awesome AG - All rights reserved </footer >
+    </div >
+</body>
+</html>

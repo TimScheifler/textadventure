@@ -1,5 +1,8 @@
 - A description of the game (background context, draft of story or storyline)
 - Summary of Background research with a description of how this has contributed to my project. (Potential Solutions, libraries, or APIs).
+    - My javascript part. https://www.youtube.com/watch?v=R1S_NhKkvGA
+    - Background sound? (Not sure if it works)
+    - Image on hover effect (Not sure if it works how I want it to work.)
 - A list of features + why they are included.
 - A navigation tree + some discussion why and how I'm organizing my side.
 - Sketch of an initial user interface + some commentary of the motivation of the design.

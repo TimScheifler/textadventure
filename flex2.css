@@ -3,34 +3,106 @@
     flex-flow : row wrap ;
     font-weight : bold ;
     text-align : center ;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 20px;
 }
 .wrapper > * {
     padding : 10px ;
     flex : 1 100%;
 }
-. header {
-    background : tomato ;
+
+.col{
+    float: left;
+    width: 50%;
 }
+
+@media screen and (max-width: 531px){
+    .row{
+        display: flex;
+        flex-flow: column;
+    }
+    .col{
+        float: left;
+        width: 100%;
+    }
+    .aside-1{
+        order: 1;
+    }
+    .page-content-container{
+        order: 2;
+    }
+    .start-game{
+        order: 3;
+    }
+    .footer{
+        order: 4;
+    }
+}
+
+.header{
+    background : #333138 ;
+}
+
 .footer {
-    background : lightgreen ;
+    background : #333138 ;
 }
-.game-container {
+.page-content-container {
     text-align : left ;
-    background : deepskyblue ;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #875633;
+}
+
+#text {
+    text-align: center;
+}
+
+.contact{
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: center;
+    background-color: #875633;
 }
 .aside-1 {
-    background : gold ;
+    background : #875633 ;
+    opacity: 0.8;
 }
 .aside-2 {
-    background : hotpink ;
+    background : #875633 ;
+    opacity: 0.8;
 }
-@media all and (min-width : 600px ) {
+.menu_ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.menu_li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 12px 10px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+@media all and (min-width : 100px ) {
     .aside { flex : 1 0 0; }
+
 }
 @media all and (min-width : 800px ) {
-    .game-container { flex : 4 0px ; }
+    .page-content-container { flex : 4 0px ; }
     .aside-1 { order : 1; }
-    .game-container { order : 2; }
+    .page-content-container { order : 2; }
     .aside-2 { order : 3; }
     .footer { order : 4; }
 }
@@ -39,17 +111,65 @@
     border: 1px solid hsl(0, 2%, 47%);
     border-radius: 5px;
     padding: 10px 10px;
-    color: whitesmoke;
+    color: #F3EFE0;
     outline: none;
 }
+
+.btn:hover{
+    border: 1px solid hsl(0, 2%, 23%);
+    cursor: pointer;
+}
 .btn-grid{
+    margin-left: 10%;
+    margin-right: 10%;
     display: grid;
-    grid-template-columns: repeat(2,auto);
+    grid-template-columns: repeat(1,auto);
     gap: 10px;
     margin-top: 12px;
 }
 body{
-    background-color: grey;
-    background-image: url("planet-1702788_1280_2.png");
+    background-color: #F3EFE0;
+    background-image: url("images/snow.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 2em;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+div{
+    color:#F3EFE0; /*ALABASTER*/
+}
+
+.form-control{
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+form .submit{
+    background: #281B11;
+    border-color: transparent;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+form .submit:hover{
+    background-color: #211C18;
+    cursor: pointer;
 }
