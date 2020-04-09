@@ -159,12 +159,18 @@ li a:hover {
     padding: 20px 10px;
     color: var(--alabaster);
     outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0px 2px 2px rgba(0,0,0,1);
 }
 
 .btn:hover{
     background-color: var(--registration-black);
     border: 1px solid var(--registration-black);
-    cursor: pointer;
+    transform: scale(1.03);
+}
+.btn:active{
+    transform: scale(0.98);
 }
 .btn-grid{
     margin-left: 13%;
@@ -189,17 +195,26 @@ li a:hover {
 form .submit{
     background: var(--zinnwaldite-brown);
     border-color: transparent;
+    border-radius: 7px;
     color: var(--alabaster);
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
     height: 40px;
     margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0px 2px 2px rgba(0,0,0,1);
 }
 
 form .submit:hover{
     background-color: var(--registration-black);
-    cursor: pointer;
+    border: 1px solid var(--registration-black);
+    transform: scale(1.03);
+}
+
+form .submit:active{
+    transform: scale(0.98);
 }
 
 /*Placeholder Text for Contact-Page*/
