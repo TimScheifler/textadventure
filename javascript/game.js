@@ -3,7 +3,7 @@ const optionButtonsElement = document.getElementById('option-buttons');
 const playerstats = document.getElementById('playerstats');
 
 var day = 1;
-var hunger = 9;
+var hunger = 8;
 var health = 5;
 
 let state = {};
@@ -97,6 +97,9 @@ function reduceHealthAndReturnScenario(damage){
     }else{
         return 11;
     }
+}
+function f() {
+
 }
 
 const textNodes = [
@@ -414,7 +417,7 @@ const textNodes = [
             {
                 text: 'Eat some vegetables and leave.',
                 nextText: 200,
-                foodRecovery: +3,
+                foodRecovery: 3,
                 damage: 1
             },
             {

@@ -11,7 +11,7 @@
 }
 
 html {
-    background: url(../images/snow.png) no-repeat center center fixed;
+    background: url(../images/map.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -21,6 +21,11 @@ html {
 body{
     margin: 0;
     padding: 2em;
+}
+
+
+.title{
+    color: var(--zinnwaldite-brown);
 }
 
 img {
@@ -69,6 +74,7 @@ div{
     }
     .start-game{
         order: 3;
+
     }
     .footer{
         order: 4;
@@ -139,8 +145,8 @@ li a:hover {
 }
 /*Game Buttons (Options)*/
 .btn{
-    background-color: hsl(0, 2%, 47%);
-    border: 1px solid hsl(0, 2%, 47%);
+    background-color: hsl(26, 40%, 11%);
+    border: 1px solid hsl(26, 40%, 11%);
     border-radius: 5px;
     padding: 10px 10px;
     color: var(--alabaster);
@@ -148,7 +154,7 @@ li a:hover {
 }
 
 .btn:hover{
-    border: 1px solid hsl(0, 2%, 23%);
+    border: 1px solid hsl(25, 45%, 36%);
     cursor: pointer;
 }
 .btn-grid{
@@ -172,7 +178,7 @@ li a:hover {
 }
 
 form .submit{
-    background: var(--coyote-brown);
+    background: var(--zinnwaldite-brown);
     border-color: transparent;
     color: #ffffff;
     font-size: 20px;
