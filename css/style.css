@@ -1,3 +1,4 @@
+/*Root Selector*/
 :root{
     --registration-black: #000500;
     --alabaster: #F3EFE0;
@@ -7,6 +8,30 @@
     --quick-silver: #A2A1A4;
     --black-leather-jacket: #23371C;
     --jet: #333138;
+}
+
+html {
+    background: url(../images/snow.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body{
+    margin: 0;
+    padding: 2em;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+div{
+    color: var(--alabaster);
 }
 .wrapper {
     display : flex ;
@@ -36,7 +61,7 @@
         float: left;
         width: 100%;
     }
-    .aside-1{
+    .aside-game{
         order: 1;
     }
     .page-content-container{
@@ -75,9 +100,11 @@
     text-align: center;
     background-color: var(--cal-poly-pomona-green);
 }
-.aside-1 {
+/*Aside (Game)*/
+.aside-game {
     background : var(--black-leather-jacket) ;
 }
+/*Menu-bar*/
 .menu_ul {
     list-style-type: none;
     margin: 0;
@@ -102,15 +129,15 @@ li a:hover {
 
 @media all and (min-width : 100px ) {
     .aside { flex : 1 0 0; }
-
 }
 @media all and (min-width : 800px ) {
     .page-content-container { flex : 4 0px ; }
-    .aside-1 { order : 1; }
+    .aside-game { order : 1; }
     .page-content-container { order : 2; }
     .aside-2 { order : 3; }
     .footer { order : 4; }
 }
+/*Game Buttons (Options)*/
 .btn{
     background-color: hsl(0, 2%, 47%);
     border: 1px solid hsl(0, 2%, 47%);
@@ -132,27 +159,8 @@ li a:hover {
     gap: 10px;
     margin-top: 12px;
 }
-body{
-    background-color: var(--alabaster);
-    background-image: url("images/snow.png");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 2em;
-}
 
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-}
-
-div{
-    color: var(--alabaster);
-}
-
+/*Contact Form*/
 .form-control{
     background: transparent;
     border: none;
@@ -179,6 +187,7 @@ form .submit:hover{
     cursor: pointer;
 }
 
+/*Placeholder Text for Contact-Page*/
 /*Chrome, Firefox, Opera, Safari*/
 ::placeholder{
     color: var(--alabaster);

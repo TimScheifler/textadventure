@@ -3,7 +3,7 @@ const optionButtonsElement = document.getElementById('option-buttons');
 const playerstats = document.getElementById('playerstats');
 
 var day = 1;
-var hunger = 10;
+var hunger = 9;
 var health = 5;
 
 let state = {};
@@ -17,7 +17,7 @@ function getDailyScenario(){
     return Math.floor(Math.random() * 3)+1;
 }
 function setPlayerStats(){
-    playerstats.innerText = 'Day: '+day+'\nHunger: '+hunger+'\nHealth: '+health;
+    playerstats.innerText = 'Day: '+day+'\nHunger: '+hunger+'/10\nHealth: '+health+'/5';
 }
 
 function showTextNode(textNodeIndex) {
@@ -47,7 +47,6 @@ function showOption(option){
     return option.requiredState == null || option.requiredState(state)
 }
 
-//eventuell kann ich die math.random-option hier einbauen? Etwas tricky... Aber es könnte funktionieren.
 function selectOption(option) {
     var nextTextNodeId = option.nextText;
     if(nextTextNodeId === 0){
@@ -60,14 +59,38 @@ function selectOption(option) {
         nextTextNodeId = reduceHealthAndReturnScenario(3);
     }
 
+    if(option.hasOwnProperty('foodRecovery')){
+        recoverFood(option);
+    }
+
+    if(option.hasOwnProperty('damage')){
+        loseHealthPoints(option);
+    }
+
     /*if(nextTextNodeId <= 0)
         return startGame();*/
     state = Object.assign(state, option.setState);
     showTextNode(nextTextNodeId)
 }
 
+function recoverFood(option) {
+    if(hunger + option.foodRecovery >= 10){
+        hunger = 10;
+    }else{
+        hunger+=option.foodRecovery;
+    }
+}
+
+function loseHealthPoints(option) {
+    if(health <= option.damage){
+        health = 0;
+    }else{
+        health-=option.damage;
+    }
+}
+
 function reduceHealthAndReturnScenario(damage){
-    health-=6;
+    health-=3;
     if(health<1){
         health=0;
         return 10;
@@ -96,7 +119,7 @@ const textNodes = [
         options: [
             {
                 text: 'Look down the tree.',
-                nextText: 0
+                nextText: 0,
             }
             ]
     },
@@ -197,7 +220,8 @@ const textNodes = [
         options:[
             {
                 text: 'Eat some seeds and leave.',
-                nextText: 100
+                nextText: 100,
+                foodRecovery: 2
             },
             {
                 text: 'Don´t eat anything and leave.',
@@ -211,8 +235,7 @@ const textNodes = [
         options:[
             {
                 text: 'leave',
-                nextText: -2
-                //TODO add foodRecovery
+                nextText: -2,
             },
         ]
     },
@@ -304,11 +327,13 @@ const textNodes = [
         options:[
             {
                 text: 'Eat some seeds and leave.',
-                nextText: 154
+                nextText: 154,
+                foodRecovery: 2,
             },
             {
                 text: 'Don´t eat anything and leave.',
-                nextText: 155
+                nextText: 155,
+                damage: 3
             }
         ]
     },
@@ -318,15 +343,15 @@ const textNodes = [
         options:[
             {
                 text: 'leave',
-                nextText: 155
-                //TODO add foodRecovery
+                nextText: 155,
+                damage: 3
             },
         ]
     },
     {
         id: 155,
-        text: 'As you turn around, the cat is right behind you hitting you with her right paw! You are falling down the birdhouse and' +
-            'hit the ground. You can hear the cat`s laugh. "Play with me little Squirrel!',
+        text: 'As you turn around, the cat is right behind you hitting you with her right paw! You are falling down the birdhouse and ' +
+            'hit the ground (Health -3). You can hear the cat`s laugh. "Play with me little Squirrel!',
         options:[
             {
                 text: 'Run as fast as you can!',
@@ -358,12 +383,13 @@ const textNodes = [
     },
     {
         id: 200,
-        text: 'You are eating the vegetables and recover hunger by +3! But your health drops -1. Time to leave.',
+        text: 'You are eating the vegetables and recover hunger by +3! But your health drops by -1. Time to leave.',
         options:[
             {
                 text: 'leave',
-                nextText: -2
-                //TODO add foodRecovery
+                nextText: -2,
+                foodRecovery: 3,
+                damage: 1
             },
         ]
     },
@@ -383,13 +409,13 @@ const textNodes = [
     },
     {
         id: 202,
-        text: 'You turn around and run back to the compost and look at the vegetables. Still disgusting. But better then nothing..',
+        text: 'You turn around and run back to the compost and look at the vegetables. Still disgusting. But better then nothing. You recover hunger by +3! But your health drops by -1. ',
         options:[
             {
                 text: 'Eat some vegetables and leave.',
-                //TODO add foodRecovery hunger.
-                //TODO lose healthPoints
-                nextText: 200
+                nextText: 200,
+                foodRecovery: +3,
+                damage: 1
             },
             {
                 text: 'Don´t eat anything and leave.',
@@ -452,15 +478,18 @@ const textNodes = [
     },
     {
         id: 250,
-        text: 'You are looking into the compost and see a few vegetables. They are`nt looking good buut...',
+        text: 'You are looking into the compost and see a few vegetables. They aren`t looking good but.',
         options:[
             {
                 text: 'Eat some vegetables and leave.',
-                nextText: 254
+                nextText: 254,
+                foodRecovery: +3,
+                damage: 1
             },
             {
                 text: 'Don´t eat anything and leave.',
-                nextText: 255
+                nextText: 255,
+                damage: 3
             }
         ]
     },
@@ -470,16 +499,15 @@ const textNodes = [
         options:[
             {
                 text: 'leave',
-                nextText: 255
-                //TODO add foodRecovery
-                //TODO lose healthPoints
+                nextText: 255,
+                damage: 3
             },
         ]
     },
     {
         id: 255,
-        text: 'As you turn around, the cat is right behind you hitting you with her right paw! You are falling on the ground and can hear the cat laughing' +
-            '. "Play with me little Squirrel!',
+        text: 'As you turn around, the cat is right behind you hitting you with her right paw! You are falling on the ground (Health -2) and can hear the cat laughing' +
+            '. "Play with me little Squirrel!"',
         options:[
             {
                 text: 'Run as fast as you can!',
