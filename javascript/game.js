@@ -35,7 +35,7 @@ function showTextNode(textNodeIndex) {
     }else{
         textNode = textNodes.find(textNode => textNode.id === 10);
     }
-    textElement.innerText = textNode.text;
+    textElement.innerText = '\n'+textNode.text;
     setPlayerStats();
     if(textNode.id===10){
         textElement.innerText = textElement.innerText+" "+day;
