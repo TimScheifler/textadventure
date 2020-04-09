@@ -21,7 +21,7 @@ function getDailyScenario(){
     return Math.floor(Math.random() * 3)+1;
 }
 function getDailyForestScenario(){
-    return Math.floor(Math.random()*(302-300)) + 300;
+    return Math.floor(Math.random()*(304-300)) + 300;
 }
 
 function setPlayerStats(){
@@ -749,22 +749,287 @@ const textNodes = [
     },
     {
         id: 302,
-        text: 'You enter the forest and walk through the sno',
+        text: 'You enter the forest. You can hear a few small birds. What do you want to do.',
         options:[
             {
-                text: 'Go left',
-                nextText: 1301
+                text: 'Go left.',
+                nextText: 1501
             },
             {
-                text: 'Go right',
-                nextText: 1301
+                text: 'Go right.',
+                nextText: 1501
             },
             {
-                text: 'Go back and sleep',
+                text: 'Go back and sleep..',
                 nextText: -2
             }
         ]
     },
+    {
+        id: 1501,
+        text: 'You are a little hungry and remember a spot where you have buried an acorn a few weeks ago.\nIt is definitely close to you.',
+        options:[
+            {
+                text: 'Try to remember the exact place.',
+                nextText: 1502
+            },
+            {
+                text: 'Climb a tree to get a better overview.',
+                nextText: 1503
+            },
+            {
+                text: 'Go back and sleep. It is probably away anyways.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1502,
+        text: 'You think that you remember the place. And your stomach is growling! What do you want to do?',
+        options:[
+            {
+                text: 'Lets go to that place.',
+                nextText: 1504
+            },
+            {
+                text: 'Climb a tree to get a better overview. I am not 100% sure.',
+                nextText: 1503
+            },
+            {
+                text: 'Go back and sleep. It is probably away anyways.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1504,
+        text: 'After a few minutes of running through the snow, you find the spot. "This must be it!"',
+        options:[
+            {
+                text: 'Start digging a hole! (-2 hunger)',
+                nextText: 1505,
+                foodRecovery: -2
+            },
+            {
+                text: '... Or maybe not? Think again..',
+                nextText: 1506
+            },
+            {
+                text: 'Go back and sleep. I dont think that that´s the spot',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1505,
+        text: 'You start digging. The ground is a bit frozen but you are able to get through. After a few more minutes you finally see three acorns!\n"THIS IS MUCH BETTER THEN EXPECTED!"',
+        options:[
+            {
+                text: 'Eat the three acorns (+5 Hunger)',
+                nextText: 1508,
+                foodRecovery: 5
+            }
+        ]
+    },
+    {
+        id: 1506,
+        text: 'You are unsettled and try to remember. "That must be the place! There is even the acorn tree from my memories"',
+        options:[
+            {
+                text: 'Start digging a hole! (-2 hunger)',
+                nextText: 1505,
+                foodRecovery: -2
+            },
+            {
+                text: 'Go back and sleep. I am not sure..',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1503,
+        text: 'You are climbing on the tree. You do have a great view over a really large area. You start thinking and remember the place being close to a acorn tree. There are only two acorn trees in the whole area!',
+        options:[
+            {
+                text: 'Lets aim for the one in the south',
+                nextText: 1507,
+            },
+            {
+                text: 'Lets aim for the one in the north',
+                nextText: 1507
+            },
+            {
+                text: 'Climb down the tree and go back home. I dont think that that´s the spot',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1507,
+        text: 'You start jumping from branch to branch, tree to tree. The snow from the branches is falling down. You are getting closer to the tree. You are scanning the area on the ground and start climbing down. You are careful as always. "This must be the spot"',
+        options:[
+            {
+                text: 'Start digging a hole! (-2 hunger)',
+                nextText: 1505,
+                foodRecovery: -2
+            },
+            {
+                text: '... Or maybe not? Think again..',
+                nextText: 1506
+            },
+            {
+                text: 'Go back and sleep. I dont think that that´s the spot',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1508,
+        text: 'What a meal. You feel great! Time to go home.',
+        options:[
+            {
+                text: 'Go back home.',
+                nextText: -2,
+            }
+        ]
+    },
+
+
+    {
+        id: 303,
+        text: 'You enter the forest. You can hear a few small birds. What do you want to do.',
+        options:[
+            {
+                text: 'Go left.',
+                nextText: 1601
+            },
+            {
+                text: 'Go right.',
+                nextText: 1601
+            },
+            {
+                text: 'Go back and sleep..',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1601,
+        text: 'You are a little hungry and remember a spot where you have buried an acorn a few weeks ago.\nIt is definitely close to you.',
+        options:[
+            {
+                text: 'Try to remember the exact place.',
+                nextText: 1602
+            },
+            {
+                text: 'Climb a tree to get a better overview.',
+                nextText: 1603
+            },
+            {
+                text: 'Go back and sleep. It is probably away anyways.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1602,
+        text: 'You think that you remember the place. And your stomach is growling! What do you want to do?',
+        options:[
+            {
+                text: 'Lets go to that place.',
+                nextText: 1604
+            },
+            {
+                text: 'Climb a tree to get a better overview. I am not 100% sure.',
+                nextText: 1603
+            },
+            {
+                text: 'Go back and sleep. It is probably away anyways.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1604,
+        text: 'After a few minutes of running through the snow, you find the spot. "This must be it!"',
+        options:[
+            {
+                text: 'Start digging a hole! (-2 hunger)',
+                nextText: 1605,
+                foodRecovery: -2
+            },
+            {
+                text: '... Or maybe not? Think again..',
+                nextText: 1606
+            },
+            {
+                text: 'Go back and sleep. I dont think that that´s the spot',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1605,
+        text: 'You start digging. The ground is a bit frozen but you are able to get through. After a few minutes you give up.. "I have already dug three flowers deep! It must be the wrong place.."',
+        options:[
+            {
+                text: 'You are sad and go back to your nest.. Hungry..',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1606,
+        text: 'You are unsettled and try to remember. "That must be the place! There is even the acorn tree from my memories"',
+        options:[
+            {
+                text: 'Start digging a hole! (-2 hunger)',
+                nextText: 1605,
+                foodRecovery: -2
+            },
+            {
+                text: 'Go back and sleep. I am not sure..',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1603,
+        text: 'You are climbing on the tree. You do have a great view over a really large area. You start thinking and remember the place being close to a acorn tree. There are only two acorn trees in the whole area!',
+        options:[
+            {
+                text: 'Lets aim for the one in the south',
+                nextText: 1607,
+            },
+            {
+                text: 'Lets aim for the one in the north',
+                nextText: 1607
+            },
+            {
+                text: 'Climb down the tree and go back home. I dont think that that´s the spot',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1607,
+        text: 'You start jumping from branch to branch, tree to tree. The snow from the branches is falling down. You are getting closer to the tree. You are scanning the area on the ground and start climbing down. You are careful as always. "This must be the spot"',
+        options:[
+            {
+                text: 'Start digging a hole! (-2 hunger)',
+                nextText: 1605,
+                foodRecovery: -2
+            },
+            {
+                text: '... Or maybe not? Think again..',
+                nextText: 1606
+            },
+            {
+                text: 'Go back and sleep. I dont think that that´s the spot',
+                nextText: -2
+            }
+        ]
+    }
 ];
 
 startGame();
