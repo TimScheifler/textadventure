@@ -1,3 +1,13 @@
+:root{
+    --registration-black: #000500;
+    --alabaster: #F3EFE0;
+    --coyote-brown: #875633;
+    --zinnwaldite-brown: #281B11;
+    --cal-poly-pomona-green: #2F4B26;
+    --quick-silver: #A2A1A4;
+    --black-leather-jacket: #23371C;
+    --jet: #333138;
+}
 .wrapper {
     display : flex ;
     flex-flow : row wrap ;
@@ -41,18 +51,18 @@
 }
 
 .header{
-    background : #333138 ;
+    background : var(--jet) ;
 }
 
 .footer {
-    background : #333138 ;
+    background : var(--jet) ;
 }
 .page-content-container {
     min-height: 300px;
     text-align : left ;
     padding-left: 2%;
     padding-right: 2%;
-    background-color: #875633;
+    background-color: var(--cal-poly-pomona-green)
 }
 
 #text {
@@ -63,22 +73,17 @@
     padding-left: 2%;
     padding-right: 2%;
     text-align: center;
-    background-color: #875633;
+    background-color: var(--cal-poly-pomona-green);
 }
 .aside-1 {
-    background : #875633 ;
-    opacity: 0.8;
-}
-.aside-2 {
-    background : #875633 ;
-    opacity: 0.8;
+    background : var(--black-leather-jacket) ;
 }
 .menu_ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: var(--jet);
 }
 .menu_li {
     float: left;
@@ -91,9 +96,8 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
-    background-color: #111;
+    background-color: var(--registration-black);
 }
 
 @media all and (min-width : 100px ) {
@@ -112,7 +116,7 @@ li a:hover {
     border: 1px solid hsl(0, 2%, 47%);
     border-radius: 5px;
     padding: 10px 10px;
-    color: #F3EFE0;
+    color: var(--alabaster);
     outline: none;
 }
 
@@ -129,7 +133,7 @@ li a:hover {
     margin-top: 12px;
 }
 body{
-    background-color: #F3EFE0;
+    background-color: var(--alabaster);
     background-image: url("images/snow.png");
     height: 100%;
     background-position: center;
@@ -146,7 +150,7 @@ img {
 }
 
 div{
-    color:#F3EFE0; /*ALABASTER*/
+    color: var(--alabaster);
 }
 
 .form-control{
@@ -160,7 +164,7 @@ div{
 }
 
 form .submit{
-    background: #281B11;
+    background: var(--coyote-brown);
     border-color: transparent;
     color: #ffffff;
     font-size: 20px;
@@ -171,6 +175,20 @@ form .submit{
 }
 
 form .submit:hover{
-    background-color: #211C18;
+    background-color: var(--registration-black);
     cursor: pointer;
+}
+
+/*Chrome, Firefox, Opera, Safari*/
+::placeholder{
+    color: var(--alabaster);
+    opacity: 0.8; /*Firefox*/
+}
+/*IE 10-11*/
+:-ms-input-placeholder{
+    color: var(--alabaster);
+}
+/*MS-Edge*/
+::-ms-input-placeholder{
+    color: var(--alabaster);
 }
