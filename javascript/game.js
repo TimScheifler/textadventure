@@ -1,3 +1,7 @@
+window.onbeforeunload = function() {
+    return true;
+};
+
 const textElement = document.getElementById('text');
 const optionButtonsElement = document.getElementById('option-buttons');
 const playerstats = document.getElementById('playerstats');
@@ -16,12 +20,21 @@ function startGame(){
 function getDailyScenario(){
     return Math.floor(Math.random() * 3)+1;
 }
+function getDailyForestScenario(){
+    return Math.floor(Math.random()*(302-300)) + 300;
+}
+
 function setPlayerStats(){
     playerstats.innerText = 'Day: '+day+'\nHunger: '+hunger+'/10\nHealth: '+health+'/5';
 }
 
 function showTextNode(textNodeIndex) {
-    const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
+    var textNode;
+    if(health > 0){
+        textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
+    }else{
+        textNode = textNodes.find(textNode => textNode.id === 10);
+    }
     textElement.innerText = textNode.text+" | "+textNode.id;
     setPlayerStats();
     if(textNode.id===10){
@@ -54,11 +67,33 @@ function selectOption(option) {
     } else if(nextTextNodeId === -1){
         day = day + 1;
     } else if(nextTextNodeId === -2){
-        hunger -= 2;
+        setNewHunger();
+        setNewHealth();
     } else if(nextTextNodeId === 11){
         nextTextNodeId = reduceHealthAndReturnScenario(3);
+    } else if(nextTextNodeId === 21){
+        nextTextNodeId = getDailyForestScenario()
     }
 
+    checkOptions(option);
+
+    state = Object.assign(state, option.setState);
+    showTextNode(nextTextNodeId)
+}
+
+function checkOptions(option) {
+    if(option.hasOwnProperty('restart')){
+        window.onbeforeunload = null;
+        window.location.href = "./game.html";
+    }
+    if(option.hasOwnProperty('aboutpage')){
+        window.onbeforeunload = null;
+        window.location.href = "./index.html";
+    }
+    if(option.hasOwnProperty('submitideas')){
+        window.onbeforeunload = null;
+        window.location.href = "./contact.html";
+    }
     if(option.hasOwnProperty('foodRecovery')){
         recoverFood(option);
     }
@@ -66,13 +101,19 @@ function selectOption(option) {
     if(option.hasOwnProperty('damage')){
         loseHealthPoints(option);
     }
-
-    /*if(nextTextNodeId <= 0)
-        return startGame();*/
-    state = Object.assign(state, option.setState);
-    showTextNode(nextTextNodeId)
 }
 
+function setNewHunger(){
+    if(hunger >= 2){
+        hunger-=2;
+    }else{
+        hunger = 0;
+    }
+}
+function setNewHealth(){
+    if(hunger === 0)
+        health = 0;
+}
 function recoverFood(option) {
     if(hunger + option.foodRecovery >= 10){
         hunger = 10;
@@ -80,7 +121,6 @@ function recoverFood(option) {
         hunger+=option.foodRecovery;
     }
 }
-
 function loseHealthPoints(option) {
     if(health <= option.damage){
         health = 0;
@@ -88,7 +128,6 @@ function loseHealthPoints(option) {
         health-=option.damage;
     }
 }
-
 function reduceHealthAndReturnScenario(damage){
     health-=3;
     if(health<1){
@@ -97,9 +136,6 @@ function reduceHealthAndReturnScenario(damage){
     }else{
         return 11;
     }
-}
-function f() {
-
 }
 
 const textNodes = [
@@ -193,13 +229,13 @@ const textNodes = [
         options:[
             {
                 text: 'Restart',
-                nextText: 9
+                restart: true
             },{
                 text: 'Back to About Page',
-                nextText: 8
+                aboutpage: true
             },{
                 text: 'Submit Any Ideas',
-                nextText: 7
+                submitideas: true
             }
         ]
     },
@@ -362,7 +398,8 @@ const textNodes = [
             },
             {
                 text: 'Fight the cat!',
-                nextText: 10
+                nextText: 10,
+                damage: 3
             },
         ]
     },
@@ -412,7 +449,7 @@ const textNodes = [
     },
     {
         id: 202,
-        text: 'You turn around and run back to the compost and look at the vegetables. Still disgusting. But better then nothing. You recover hunger by +3! But your health drops by -1. ',
+        text: 'You turn around and run back to the compost and look at the vegetables. Still disgusting. But better then nothing. You have recovered hunger by +3! But your health drops by -1. ',
         options:[
             {
                 text: 'Eat some vegetables and leave.',
@@ -518,26 +555,216 @@ const textNodes = [
             },
             {
                 text: 'Fight the cat!',
-                nextText: 10
+                nextText: 10,
+                damage: 3
             },
         ]
     },
 
-    //Following Options and their stories.
+    //Following Options and their stories (300+).
     {
         id: 21,
         text: 'Option 21.',
+        options:[]
+    },
+    //FROZEN LAKE
+    {
+        id: 300,
+        text: 'You enter the forest and walk through the snow. It is really quiet. No footsteps. What do you want to do?',
         options:[
             {
-                text: '',
-                nextText: 0
+                text: 'Go left',
+                nextText: 1301
             },
             {
-                text: 'placeholder.',
-                nextText: 0
+                text: 'Go right',
+                nextText: 1301
+            },
+            {
+                text: 'Go back and sleep',
+                nextText: -2
             }
         ]
-    }
-]
+    },
+    {
+        id: 1301,
+        text: 'You see the small lake. One of the most beautiful places during the summer. \n' +
+            'It is almost completely frozen. You can see a nut lying on the ice. What do you want to do?',
+        options:[
+            {
+                text: 'Take the risk and get the nut!',
+                nextText: 1302
+            },
+            {
+                text: 'Let it be and go back to your nest.',
+                nextText: -2
+            },
+            {
+                text: 'Wait. Maybe something happens.',
+                nextText: 1303
+            }
+        ]
+    },
+    {
+        id: 1302,
+        text: 'You are slowly walking over the ice. The ice seems to be solid. But you are totally unprotected.',
+        options:[
+            {
+                text: 'Take the risk and get the nut!',
+                nextText: 1304,
+                foodRecovery: 3
+            },
+            {
+                text: 'Let it be. Maybe tomorrow!',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1304,
+        text: 'You´ve got the nut! It tastes great. You recover your health by +3!',
+        options:[
+            {
+                text: 'Call it a day and get back home. Slowly.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1303,
+        text: 'Nothing happens. What do you want to do?',
+        options:[
+            {
+                text: 'Take the risk and get the nut!',
+                nextText: 1302
+            },
+            {
+                text: 'Let it be and go back to your nest.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 301,
+        text: 'You enter the forest and walk through the snow. It is really quiet. No footsteps. What do you want to do?',
+        options:[
+            {
+                text: 'Go left',
+                nextText: 1401
+            },
+            {
+                text: 'Go right',
+                nextText: 1401
+            },
+            {
+                text: 'Go back and sleep',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1401,
+        text: 'You see the small lake. One of the most beautiful places during the summer. \n' +
+            'It is almost completely frozen. You can see a nut lying on the ice. What do you want to do?',
+        options:[
+            {
+                text: 'Take the risk and get the nut!',
+                nextText: 1402
+            },
+            {
+                text: 'Let it be and go back to your nest.',
+                nextText: -2
+            },
+            {
+                text: 'Wait. Maybe something happens.',
+                nextText: 1403
+            }
+        ]
+    },
+    {
+        id: 1402,
+        text: 'You are slowly walking over the ice. You can hear a few cracks but everything seems to be okay.',
+        options:[
+            {
+                text: 'Take the risk and get the nut!',
+                nextText: 1404,
+                damage: 1
+            },
+            {
+                text: 'Let it be. Maybe tomorrow!',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1404,
+        text: 'While you are getting closer, the ice under your feet breaks! Almost your whole lower body is under water! ' +
+            'You lose 1 health point. What should you do?',
+        options:[
+            {
+                text: 'GET THE NUT AND RUN',
+                nextText: 1405,
+                damage: 1,
+                foodRecovery: 3
+            },{
+                text: 'Try to get back home!',
+                nextText: 1406
+            }
+        ]
+    },
+    {
+        id: 1403,
+        text: 'Nothing happens. What do you want to do?',
+        options:[
+            {
+                text: 'Take the risk and get the nut!',
+                nextText: 1402
+            },
+            {
+                text: 'Let it be and go back to your nest.',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1405,
+        text: 'You are jumping on your feet and run to the nut! You got the nut and recover hunger by +3! On your way back, you have to swim a little again and lose another healthpoint.' +
+            'You are trembling but made it back to the shore.',
+        options:[
+            {
+                text: 'Go back to your nest and warm up',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 1406,
+        text: 'You made it back to the shore! You are trembling a little and are sad that you haven`t reached the nut.',
+        options:[
+            {
+                text: 'Go back to your nest and warm up',
+                nextText: -2
+            }
+        ]
+    },
+    {
+        id: 302,
+        text: 'You enter the forest and walk through the sno',
+        options:[
+            {
+                text: 'Go left',
+                nextText: 1301
+            },
+            {
+                text: 'Go right',
+                nextText: 1301
+            },
+            {
+                text: 'Go back and sleep',
+                nextText: -2
+            }
+        ]
+    },
+];
 
 startGame();

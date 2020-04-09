@@ -2,7 +2,6 @@
 :root{
     --registration-black: #000500;
     --alabaster: #F3EFE0;
-    --coyote-brown: #875633;
     --zinnwaldite-brown: #281B11;
     --cal-poly-pomona-green: #2F4B26;
     --quick-silver: #A2A1A4;
@@ -11,7 +10,9 @@
 }
 
 html {
+    font-family: 'Roboto', sans-serif;
     background: url(../images/map.jpg) no-repeat center center fixed;
+    background-color: var(--black-leather-jacket);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -26,6 +27,8 @@ body{
 
 .title{
     color: var(--zinnwaldite-brown);
+    font-size: 42px;
+    font-weight: bold;
 }
 
 img {
@@ -33,6 +36,12 @@ img {
     margin-left: auto;
     margin-right: auto;
     width: 75%;
+}
+
+.squirrel-picture{
+    width: 50%;
+    background-color: var(--cal-poly-pomona-green);
+    border: 3px solid var(--registration-black);
 }
 
 div{
@@ -57,7 +66,7 @@ div{
     width: 50%;
 }
 
-@media screen and (max-width: 531px){
+@media screen and (max-width: 600px){
     .row{
         display: flex;
         flex-flow: column;
@@ -136,33 +145,33 @@ li a:hover {
 @media all and (min-width : 100px ) {
     .aside { flex : 1 0 0; }
 }
-@media all and (min-width : 800px ) {
+@media all and (min-width : 600px ) {
     .page-content-container { flex : 4 0px ; }
     .aside-game { order : 1; }
     .page-content-container { order : 2; }
-    .aside-2 { order : 3; }
-    .footer { order : 4; }
+    .footer { order : 3; }
 }
 /*Game Buttons (Options)*/
 .btn{
-    background-color: hsl(26, 40%, 11%);
-    border: 1px solid hsl(26, 40%, 11%);
-    border-radius: 5px;
-    padding: 10px 10px;
+    background-color: var(--zinnwaldite-brown);
+    border: 1px solid var(--zinnwaldite-brown);
+    border-radius: 7px;
+    padding: 20px 10px;
     color: var(--alabaster);
     outline: none;
 }
 
 .btn:hover{
-    border: 1px solid hsl(25, 45%, 36%);
+    background-color: var(--registration-black);
+    border: 1px solid var(--registration-black);
     cursor: pointer;
 }
 .btn-grid{
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 13%;
+    margin-right: 13%;
     display: grid;
     grid-template-columns: repeat(2,auto);
-    gap: 10px;
+    gap: 15px;
     margin-top: 12px;
 }
 
@@ -172,7 +181,7 @@ li a:hover {
     border: none;
     outline: none;
     border-bottom: 1px solid gray;
-    color: #ffffff;
+    color: var(--alabaster);
     font-size: 18px;
     margin-bottom: 16px;
 }
@@ -180,7 +189,7 @@ li a:hover {
 form .submit{
     background: var(--zinnwaldite-brown);
     border-color: transparent;
-    color: #ffffff;
+    color: var(--alabaster);
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
