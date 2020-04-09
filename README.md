@@ -1,7 +1,7 @@
 # SET08101 2019-0 TR2 001 - Web Technologies
 Squirrel text adventure game
 
-##Storyline
+## Storyline
 In the game, the player is a squirrel that lives in
 a tree which is in the garden of the family Dreyfus. Since squirrels do not hibernate but put on
 some layers to still be able to go outside, they
@@ -22,7 +22,7 @@ squirrel has to react to.
 In order not to be robbed again, the squirrel
 must go home at sunset!
 
-##Game Explanation
+## Game Explanation
 The goal of the player is to
 act correctly in different situations and to stay
 alive for as many days as possible. The player
