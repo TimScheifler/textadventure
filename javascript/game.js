@@ -64,6 +64,8 @@ function selectOption(option) {
     var nextTextNodeId = option.nextText;
     if(nextTextNodeId === 0){
         nextTextNodeId = getDailyScenario();
+    } else if(nextTextNodeId === 23){
+        nextTextNodeId = decideBetween(26,27);
     } else if(nextTextNodeId === -1){
         day = day + 1;
     } else if(nextTextNodeId === -2){
@@ -79,6 +81,12 @@ function selectOption(option) {
 
     state = Object.assign(state, option.setState);
     showTextNode(nextTextNodeId)
+}
+
+function decideBetween(either, or){
+    if(Math.random() >= 0.5)
+        return either;
+    return or;
 }
 
 function checkOptions(option) {
@@ -409,15 +417,32 @@ const textNodes = [
     //safe
     {
         id: 23,
+        text: '',
+        options:[]
+    },
+    {
+        id: 26,
         text: 'You are silently hopping through the snow. While you´re getting closer, a weird smell stings into your nose. You see some rotten vegetables.. Better then nothing..',
         options:[
             {
                 text: 'Eat vegetables and leave.',
-                nextText: 200
+                nextText: 200,
+                foodRecovery: 3,
+                damage: 1
             },
             {
                 text: 'Don´t eat anything and leave.',
                 nextText: 201
+            }
+        ]
+    }, {
+        id: 27,
+        text: 'You are silently hopping through the snow. While you´re getting closer, a weird smell stings into your nose. You see some rotten vegetables.. But there is also a good looking carrot! Not your favorite but better then nothing.',
+        options:[
+            {
+                text: 'Eat vegetables and leave.',
+                nextText: 203,
+                foodRecovery: 3
             }
         ]
     },
@@ -428,8 +453,6 @@ const textNodes = [
             {
                 text: 'leave',
                 nextText: -2,
-                foodRecovery: 3,
-                damage: 1
             },
         ]
     },
@@ -461,6 +484,16 @@ const textNodes = [
                 text: 'Don´t eat anything and leave.',
                 nextText: 201
             }
+        ]
+    },
+    {
+        id: 203,
+        text: 'You are eating the vegetables and recover hunger by +3! Time to leave.',
+        options:[
+            {
+                text: 'leave',
+                nextText: -2,
+            },
         ]
     },
 

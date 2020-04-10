@@ -209,6 +209,7 @@ form .submit{
 
 form .submit:hover{
     background-color: var(--registration-black);
+    background-color: var(--registration-black);
     border: 1px solid var(--registration-black);
     transform: scale(1.03);
 }
